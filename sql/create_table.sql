@@ -1,5 +1,6 @@
 drop database if exists dealership;
 create database dealership;
+USE dealership;
 drop table if exists Customer;
 drop table if exists Vehicle;
 drop table if exists Sales;
@@ -29,6 +30,13 @@ CREATE TABLE Vehicle (
                          SoldStatus BOOLEAN DEFAULT FALSE
 );
 
+CREATE TABLE Salesperson (
+                             SalespersonID INT PRIMARY KEY AUTO_INCREMENT,
+                             FirstName VARCHAR(50) NOT NULL,
+                             LastName VARCHAR(50) NOT NULL,
+                             ContactNumber VARCHAR(15)
+);
+
 CREATE TABLE Sales (
                        SaleID INT PRIMARY KEY AUTO_INCREMENT,
                        CustomerID INT,
@@ -41,12 +49,14 @@ CREATE TABLE Sales (
                        FOREIGN KEY (SalespersonID) REFERENCES Salesperson(SalespersonID)
 );
 
-CREATE TABLE Salesperson (
-                             SalespersonID INT PRIMARY KEY AUTO_INCREMENT,
-                             FirstName VARCHAR(50) NOT NULL,
-                             LastName VARCHAR(50) NOT NULL,
-                             ContactNumber VARCHAR(15)
+CREATE TABLE ServicePackage (
+                                PackageID INT PRIMARY KEY AUTO_INCREMENT,
+                                PackageName VARCHAR(50) NOT NULL,
+                                CarAge INT NOT NULL,  -- Age of car in years for this package
+                                LaborCost DECIMAL(10, 2),
+                                Description TEXT
 );
+
 CREATE TABLE ServiceAppointment (
                                     AppointmentID INT PRIMARY KEY AUTO_INCREMENT,
                                     CustomerID INT,
@@ -59,6 +69,7 @@ CREATE TABLE ServiceAppointment (
                                     FOREIGN KEY (VehicleID) REFERENCES Vehicle(VehicleID),  -- Updated reference
                                     FOREIGN KEY (PackageID) REFERENCES ServicePackage(PackageID)
 );
+
 
 CREATE TABLE ServiceDetail (
                                ServiceID INT PRIMARY KEY AUTO_INCREMENT,
