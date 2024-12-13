@@ -25,8 +25,24 @@ public class Sales {
     @JoinColumn(name = "vehicle_id", nullable = false)
     private Vehicle vehicle;
 
+    public void setSoldPrice(BigDecimal soldPrice) {
+        this.soldPrice = soldPrice;
+    }
+
     private BigDecimal soldPrice;
+
+    public void setSaleDate(LocalDate saleDate) {
+        this.saleDate = saleDate;
+    }
+
     private LocalDate saleDate;
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
 
 }
 

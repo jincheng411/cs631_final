@@ -38,12 +38,12 @@ CREATE TABLE salesperson (
 );
 
 CREATE TABLE sales (
-    sale_id INT PRIMARY KEY AUTO_INCREMENT,
+    sale_id BIGINT PRIMARY KEY AUTO_INCREMENT,
     customer_id BIGINT,
-    vehicle_id INT,  -- Updated foreign key
+    vehicle_id BIGINT,  -- Updated foreign key
     sold_price DECIMAL(10, 2) NOT NULL,
     sale_date DATE NOT NULL,
-    salesperson_id INT,
+    salesperson_id BIGINT,
     FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
     FOREIGN KEY (vehicle_id) REFERENCES vehicle(vehicle_id),  -- Updated reference
     FOREIGN KEY (salesperson_id) REFERENCES salesperson(salesperson_id)
