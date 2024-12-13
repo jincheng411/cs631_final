@@ -1,26 +1,28 @@
 package com.njit.cs631.final_project.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long vehicleId;
+    @Column(name="vehicle_id")
+    private Long vehicleID;
 
     private String make;
     private String model;
     private int year;
     private String vin;
-    private double price;
-    private double costPrice;
+    private BigDecimal price;
+    private BigDecimal costPrice;
     private boolean soldStatus;
 }
 

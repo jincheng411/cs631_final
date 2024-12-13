@@ -22,6 +22,8 @@ public class SalesController {
 
     @GetMapping
     public ResponseEntity<List<Sales>> getSalesByDateRange(@RequestParam LocalDate startDate, @RequestParam LocalDate endDate) {
+        System.out.println("aaaaaa");
+        System.out.println(startDate + " " + endDate);
         return ResponseEntity.ok(salesService.getSalesByDateRange(startDate, endDate));
     }
 }
