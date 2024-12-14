@@ -11,9 +11,9 @@ CS631853 Weiyu Li & Jin Cheng
 ## Database Design
 This project schema is not directly based on the ER-Diagram reference provided in the link, but it is a similar representation. 
 
-[ER-Diagram Reference](https://drive.google.com/file/d/183xLD1TsGAuvct3AC0KwaiUeueA9yWRK/view?usp=drive_link) 
+[Sample-ER-Diagram Reference](https://drive.google.com/file/d/183xLD1TsGAuvct3AC0KwaiUeueA9yWRK/view?usp=drive_link) 
 
-[Team-ER-Diagram] (https://drive.google.com/file/d/1MiAQvyQXmPOjU8QzwXUQuKGdaeWfPnKd/view?usp=drive_link)
+[Team-ER-Diagram](https://drive.google.com/file/d/1MiAQvyQXmPOjU8QzwXUQuKGdaeWfPnKd/view?usp=drive_link)
 
 ## User Manual
 1) **Setup:**
@@ -46,7 +46,7 @@ This project schema is not directly based on the ER-Diagram reference provided i
 **Final Report**
 [Final_Project_Report](https://docs.google.com/document/d/1odoCWQLeyx8yrVUOYz3z5oIYrKAx2yD0/edit?usp=drive_link&ouid=103582853920917914547&rtpof=true&sd=true) 
 
-** Final Report for Mapping **
+**Final Report for Mapping**
 [Final-Project-Mapping](https://drive.google.com/file/d/1qodh2vqWYaIu1mbUI1j6o-MFaOYQgMgZ/view?usp=drive_link)
 
 **Midterm Report (Mapping Steps)**
