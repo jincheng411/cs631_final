@@ -21,8 +21,11 @@ public class VehicleController {
     @GetMapping("/vin/{vin}")
     public ResponseEntity<Vehicle> getVehicleByVin(@PathVariable String vin) {
         Vehicle vehicle = vehicleService.findByVin(vin);
-        if (vehicle == null) {
+        if (vehicle == null ) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        if (vehicle.isSoldStatus() == true ) {
+            return ResponseEntity.status(HttpStatus.IM_USED).body(null);
         }
         return ResponseEntity.ok(vehicle);
     }

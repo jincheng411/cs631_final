@@ -11,8 +11,9 @@ const ReturningCustomerForm = () => {
     e.preventDefault();
     try {
       const response = await findCustomerByName(name.firstName, name.lastName);
+      console.log(response.data);
       if (response.data) {
-        navigate(`/sale-details/${response.data.id}`); // Redirect to sale details with customer ID
+        navigate(`/sale-details/${response.data[0].customerId}`); // Redirect to sale details with customer ID
       } else {
         setError('Customer not found');
       }
