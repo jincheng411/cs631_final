@@ -1,15 +1,14 @@
-DROP DATABASE IF EXISTS dealership;
-CREATE DATABASE dealership;
+drop database if exists dealership;
+create database dealership;
 USE dealership;
+drop table if exists customer;
+drop table if exists vehicle;
+drop table if exists sales;
+drop table if exists service_appointment;
+drop table if exists service_package;
+drop table if exists service_detail;
+drop table if exists parts;
 
-DROP TABLE IF EXISTS serviceDetail;
-DROP TABLE IF EXISTS serviceAppointment;
-DROP TABLE IF EXISTS servicePackage;
-DROP TABLE IF EXISTS sales;
-DROP TABLE IF EXISTS parts;
-DROP TABLE IF EXISTS vehicle;
-DROP TABLE IF EXISTS salesperson;
-DROP TABLE IF EXISTS customer;
 
 CREATE TABLE customer (
     customer_id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -51,42 +50,42 @@ CREATE TABLE sales (
     FOREIGN KEY (salesperson_id) REFERENCES salesperson(salesperson_id)
 );
 
-CREATE TABLE servicePackage (
-    PackageID INT PRIMARY KEY AUTO_INCREMENT,
-    PackageName VARCHAR(50) NOT NULL,
-    CarAge INT NOT NULL,
-    LaborCost DECIMAL(10, 2),
-    Description TEXT
+CREATE TABLE service_package (
+    package_id INT PRIMARY KEY AUTO_INCREMENT,
+    package_name VARCHAR(50) NOT NULL,
+    car_age INT NOT NULL,
+    labor_cost DECIMAL(10, 2),
+    description TEXT
 );
 
-CREATE TABLE serviceAppointment (
-    AppointmentID INT PRIMARY KEY AUTO_INCREMENT,
-    CustomerID BIGINT,
-    VehicleID BIGINT,
-    ScheduledTime DATETIME NOT NULL,
-    PackageID INT,
-    EstimatedTime INT,
-    AppointmentStatus VARCHAR(20) DEFAULT 'scheduled',
-    FOREIGN KEY (CustomerID) REFERENCES customer(customer_id),
-    FOREIGN KEY (VehicleID) REFERENCES vehicle(vehicle_id),
-    FOREIGN KEY (PackageID) REFERENCES servicePackage(PackageID)
+CREATE TABLE service_appointment (
+    appointment_id INT PRIMARY KEY AUTO_INCREMENT,
+    customer_id BIGINT,
+    vehicle_id BIGINT,
+    scheduled_time DATETIME NOT NULL,
+    package_id INT,
+    estimated_time INT,
+    appointment_status VARCHAR(20) DEFAULT 'scheduled',
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
+    FOREIGN KEY (vehicle_id) REFERENCES vehicle(vehicle_id),
+    FOREIGN KEY (package_id) REFERENCES service_package(package_id)
 );
 
-CREATE TABLE serviceDetail (
-    ServiceID INT PRIMARY KEY AUTO_INCREMENT,
-    AppointmentID INT,
-    ArrivalTime DATETIME NOT NULL,
-    PickUpTime DATETIME,
-    ServicePerformed TEXT,
-    PartsUsed TEXT,
-    LaborHours DECIMAL(4, 2),
-    TotalCost DECIMAL(10, 2),
-    FOREIGN KEY (AppointmentID) REFERENCES serviceAppointment(AppointmentID)
+CREATE TABLE service_detail (
+    service_id INT PRIMARY KEY AUTO_INCREMENT,
+    appointment_id INT,
+    arrival_time DATETIME NOT NULL,
+    pick_up_time DATETIME,  
+    service_performed TEXT,
+    parts_used TEXT,
+    labor_hours DECIMAL(4, 2),  
+    total_cost DECIMAL(10, 2),
+    FOREIGN KEY (appointment_id) REFERENCES service_appointment(appointment_id)
 );
 
 CREATE TABLE parts (
     PartID INT PRIMARY KEY AUTO_INCREMENT,
-    PartName VARCHAR(50) NOT NULL,
+    part_name VARCHAR(50) NOT NULL,
     Price DECIMAL(10, 2) NOT NULL,
-    StockQuantity INT NOT NULL
+    stock_quantity INT NOT NULL
 );
