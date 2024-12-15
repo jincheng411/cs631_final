@@ -24,6 +24,11 @@ const SaleDetailsForm = () => {
     try {
       setError(''); // Clear previous errors
       const response = await getVehicleByVin(sale.vin);
+      console.log(response);
+      if (response.status === 226) {
+        setError('Vehicle is sold. Please check the VIN.');
+        setVehicle(null);
+      }
       setVehicle(response.data);
     } catch (err) {
       setError('Vehicle not found. Please check the VIN.');

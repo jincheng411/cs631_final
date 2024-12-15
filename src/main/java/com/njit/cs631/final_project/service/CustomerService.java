@@ -22,5 +22,9 @@ public class CustomerService {
     public Customer getCustomerById(Long customerId) {
         return customerRepository.findById(customerId).get();
     }
+
+    public List<Customer> findCustomerByName(String firstName, String lastName) {
+        return customerRepository.findByFirstNameAndLastName(firstName, lastName);
+    }
 }
 
