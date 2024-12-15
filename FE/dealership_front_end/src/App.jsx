@@ -6,6 +6,7 @@ import ReturningCustomerForm from './components/Sale/ReturningCustomerForm';
 import SaleDetailsForm from './components/Sale/SaleDetailsForm';
 import AppointmentForm from './components/Appointments/AppointmentForm';
 import AppointmentList from './components/Appointments/AppointmentList';
+import './App.css';
 
 const App = () => {
   return (
