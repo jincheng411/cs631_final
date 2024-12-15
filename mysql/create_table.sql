@@ -1,13 +1,13 @@
 drop database if exists dealership;
 create database dealership;
 USE dealership;
-drop table if exists Customer;
-drop table if exists Vehicle;
-drop table if exists Sales;
-drop table if exists ServiceAppointment;
-drop table if exists ServicePackage;
-drop table if exists ServiceDetail;
-drop table if exists Parts;
+drop table if exists customer;
+drop table if exists vehicle;
+drop table if exists sales;
+drop table if exists service_appointment;
+drop table if exists service_package;
+drop table if exists service_detail;
+drop table if exists parts;
 USE dealership;
 CREATE TABLE customer (
     customer_id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -71,16 +71,16 @@ CREATE TABLE serviceAppointment (
 );
  
 
-CREATE TABLE serviceDetail (
-    ServiceID INT PRIMARY KEY AUTO_INCREMENT,
-    AppointmentID INT,
-    ArrivalTime DATETIME NOT NULL,
-    PickUpTime DATETIME,  
-    ServicePerformed TEXT,
-    PartsUsed TEXT,
-    LaborHours DECIMAL(4, 2),  
-    TotalCost DECIMAL(10, 2),
-    FOREIGN KEY (AppointmentID) REFERENCES ServiceAppointment(AppointmentID)
+CREATE TABLE service_detail (
+    service_id INT PRIMARY KEY AUTO_INCREMENT,
+    appointment_id INT,
+    arrival_time DATETIME NOT NULL,
+    pick_up_time DATETIME,  
+    service_performed TEXT,
+    parts_used TEXT,
+    labor_hours DECIMAL(4, 2),  
+    total_cost DECIMAL(10, 2),
+    FOREIGN KEY (appointment_id) REFERENCES service_appointment(appointment_id)
 );
 CREATE TABLE parts (
     PartID INT PRIMARY KEY AUTO_INCREMENT,

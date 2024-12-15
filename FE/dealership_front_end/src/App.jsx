@@ -11,6 +11,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<SaleOptions />} />
         <Route path="/new-customer" element={<NewCustomerForm />} />
+        <Route path="/service-appointments" element={<AppointmentList />} />
+        <Route path="/service-appointments/new" element={<AppointmentForm />} />
         <Route path="/returning-customer" element={<ReturningCustomerForm />} />
         <Route path="/sale-details/:customerId" element={<SaleDetailsForm />} />
       </Routes>
