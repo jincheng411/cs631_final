@@ -4,6 +4,8 @@ import SaleOptions from './components/Sale/SaleOptions';
 import NewCustomerForm from './components/Sale/NewCustomerForm';
 import ReturningCustomerForm from './components/Sale/ReturningCustomerForm';
 import SaleDetailsForm from './components/Sale/SaleDetailsForm';
+import './App.css';
+
 
 const App = () => {
   return (

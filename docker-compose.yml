@@ -35,11 +35,11 @@ services:
     build:
       context: ./FE/dealership_front_end
       dockerfile: Dockerfile
-    container_name: cs631_frontend
+    container_name: frontend
     ports:
-      - "5173:5173"
-    stdin_open: true
-    tty: true
+      - "5173:80"
+
+
 
 volumes:
   mysql_data:
