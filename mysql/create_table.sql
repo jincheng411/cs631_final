@@ -8,7 +8,8 @@ drop table if exists service_appointment;
 drop table if exists service_package;
 drop table if exists service_detail;
 drop table if exists parts;
-USE dealership;
+
+
 CREATE TABLE customer (
     customer_id BIGINT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(50) NOT NULL,
@@ -26,7 +27,7 @@ CREATE TABLE vehicle (
     year INT NOT NULL,
     vin VARCHAR(17) UNIQUE NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
-    cost_price DECIMAL(10, 2),  -- New field to track cost price for profit calculations
+    cost_price DECIMAL(10, 2), 
     sold_status BOOLEAN DEFAULT FALSE
 );
 
@@ -40,36 +41,35 @@ CREATE TABLE salesperson (
 CREATE TABLE sales (
     sale_id BIGINT PRIMARY KEY AUTO_INCREMENT,
     customer_id BIGINT,
-    vehicle_id BIGINT,  -- Updated foreign key
+    vehicle_id BIGINT,
     sold_price DECIMAL(10, 2) NOT NULL,
     sale_date DATE NOT NULL,
     salesperson_id BIGINT,
     FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
-    FOREIGN KEY (vehicle_id) REFERENCES vehicle(vehicle_id),  -- Updated reference
+    FOREIGN KEY (vehicle_id) REFERENCES vehicle(vehicle_id),
     FOREIGN KEY (salesperson_id) REFERENCES salesperson(salesperson_id)
 );
 
- CREATE TABLE servicePackage (
+CREATE TABLE servicePackage (
     PackageID INT PRIMARY KEY AUTO_INCREMENT,
     PackageName VARCHAR(50) NOT NULL,
-    CarAge INT NOT NULL,  -- Age of car in years for this package
+    CarAge INT NOT NULL,
     LaborCost DECIMAL(10, 2),
     Description TEXT
 );
 
 CREATE TABLE serviceAppointment (
     AppointmentID INT PRIMARY KEY AUTO_INCREMENT,
-    CustomerID INT,
-    VehicleID INT,  -- Updated foreign key
+    CustomerID BIGINT,
+    VehicleID BIGINT,
     ScheduledTime DATETIME NOT NULL,
     PackageID INT,
-    EstimatedTime INT,  -- Estimated service time in minutes
+    EstimatedTime INT,
     AppointmentStatus VARCHAR(20) DEFAULT 'scheduled',
-    FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
-    FOREIGN KEY (VehicleID) REFERENCES Vehicle(VehicleID),  -- Updated reference
-    FOREIGN KEY (PackageID) REFERENCES ServicePackage(PackageID)
+    FOREIGN KEY (CustomerID) REFERENCES customer(customer_id),
+    FOREIGN KEY (VehicleID) REFERENCES vehicle(vehicle_id),
+    FOREIGN KEY (PackageID) REFERENCES servicePackage(PackageID)
 );
- 
 
 CREATE TABLE service_detail (
     service_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -82,10 +82,10 @@ CREATE TABLE service_detail (
     total_cost DECIMAL(10, 2),
     FOREIGN KEY (appointment_id) REFERENCES service_appointment(appointment_id)
 );
+
 CREATE TABLE parts (
     PartID INT PRIMARY KEY AUTO_INCREMENT,
     PartName VARCHAR(50) NOT NULL,
     Price DECIMAL(10, 2) NOT NULL,
     StockQuantity INT NOT NULL
 );
-
