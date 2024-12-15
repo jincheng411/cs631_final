@@ -44,13 +44,12 @@ VALUES
 (5, 5, 24000.00, '2024-03-05', 4),
 (7, 7, 45000.00, '2024-03-15', 5),
 (9, 8, 20000.00, '2024-04-01', 1),
-(4, 10, 28000.00, '2024-04-15', 2),
 (6, 3, 35000.00, '2024-05-10', 3),
 (8, 6, 60000.00, '2024-05-20', 4),
 (10, 9, 32000.00, '2024-06-01', 5);
 
 
-INSERT INTO servicePackage (PackageName, CarAge, LaborCost, Description)
+INSERT INTO service_package (package_name, car_age, labor_cost, description)
 VALUES
 ('1-Year Service', 1, 100.00, 'Oil change, tire rotation, basic inspection'),
 ('2-Year Service', 2, 200.00, 'Oil change, brake check, detailed inspection'),
@@ -58,20 +57,20 @@ VALUES
 ('4-Year Service', 4, 400.00, 'Advanced service, suspension check, full diagnostics'),
 ('5-Year Service', 5, 500.00, 'Comprehensive service, engine tune-up, full repairs');
 
-INSERT INTO serviceAppointment (CustomerID, VehicleID, ScheduledTime, PackageID, EstimatedTime, AppointmentStatus)
+INSERT INTO service_appointment(appointment_id, vehicle_id,customer_id, scheduled_time, package_id, estimated_time, appointment_status)
 VALUES
-(1, 1, '2024-07-01 09:00:00', 1, 120, 'scheduled'),
-(2, 2, '2024-07-02 10:00:00', 2, 150, 'completed'),
-(3, 4, '2024-07-03 11:00:00', 3, 180, 'scheduled'),
-(5, 5, '2024-07-04 08:30:00', 1, 90, 'completed'),
-(7, 7, '2024-07-05 14:00:00', 2, 120, 'scheduled'),
-(9, 8, '2024-07-06 15:30:00', 3, 180, 'scheduled'),
-(4, 10, '2024-07-07 09:00:00', 1, 120, 'completed'),
-(6, 3, '2024-07-08 10:00:00', 2, 150, 'scheduled'),
-(8, 6, '2024-07-09 11:30:00', 3, 180, 'completed'),
-(10, 9, '2024-07-10 08:00:00', 1, 90, 'scheduled');
+(1, 1,1, '2024-07-01 09:00:00', 1, 120, 'scheduled'),
+(2, 2, 2, '2024-07-02 10:00:00', 2, 150, 'completed'),
+(3, 4, 4, '2024-07-03 11:00:00', 3, 180, 'scheduled'),
+(5, 5, 3, '2024-07-04 08:30:00', 1, 90, 'completed'),
+(7, 7, 6, '2024-07-05 14:00:00', 2, 120, 'scheduled'),
+(9, 8, 5, '2024-07-06 15:30:00', 3, 180, 'scheduled'),
+(4, 6, 9, '2024-07-07 09:00:00', 1, 120, 'completed'),
+(6, 3, 7, '2024-07-08 10:00:00', 2, 150, 'scheduled'),
+(8, 6, 8, '2024-07-09 11:30:00', 3, 180, 'completed'),
+(10, 9, 10, '2024-07-10 08:00:00', 1, 90, 'scheduled');
 
-INSERT INTO parts (PartName, Price, StockQuantity)
+INSERT INTO parts (part_name, price, stock_quantity)
 VALUES
 ('Oil Filter', 15.00, 100),
 ('Brake Pads', 45.00, 50),
@@ -84,7 +83,7 @@ VALUES
 ('Alternator', 150.00, 10),
 ('Timing Belt', 200.00, 5);
 
-INSERT INTO serviceDetail (AppointmentID, ArrivalTime, PickUpTime, ServicePerformed, PartsUsed, LaborHours, TotalCost)
+INSERT INTO service_detail (appointment_id, arrival_time, pick_up_time, service_performed, parts_used, labor_hours, total_cost)
 VALUES
 (1, '2024-07-01 09:00:00', '2024-07-01 11:00:00', 'Basic Inspection', 'Oil Filter', 2.0, 120.00),
 (2, '2024-07-02 10:00:00', '2024-07-02 12:30:00', 'Brake Check', 'Brake Pads', 2.5, 250.00),

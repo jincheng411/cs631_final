@@ -50,25 +50,25 @@ CREATE TABLE sales (
     FOREIGN KEY (salesperson_id) REFERENCES salesperson(salesperson_id)
 );
 
-CREATE TABLE servicePackage (
-    PackageID INT PRIMARY KEY AUTO_INCREMENT,
-    PackageName VARCHAR(50) NOT NULL,
-    CarAge INT NOT NULL,
-    LaborCost DECIMAL(10, 2),
-    Description TEXT
+CREATE TABLE service_package (
+    package_id INT PRIMARY KEY AUTO_INCREMENT,
+    package_name VARCHAR(50) NOT NULL,
+    car_age INT NOT NULL,
+    labor_cost DECIMAL(10, 2),
+    description TEXT
 );
 
-CREATE TABLE serviceAppointment (
-    AppointmentID INT PRIMARY KEY AUTO_INCREMENT,
-    CustomerID BIGINT,
-    VehicleID BIGINT,
-    ScheduledTime DATETIME NOT NULL,
-    PackageID INT,
-    EstimatedTime INT,
-    AppointmentStatus VARCHAR(20) DEFAULT 'scheduled',
-    FOREIGN KEY (CustomerID) REFERENCES customer(customer_id),
-    FOREIGN KEY (VehicleID) REFERENCES vehicle(vehicle_id),
-    FOREIGN KEY (PackageID) REFERENCES servicePackage(PackageID)
+CREATE TABLE service_appointment (
+    appointment_id INT PRIMARY KEY AUTO_INCREMENT,
+    customer_id BIGINT,
+    vehicle_id BIGINT,
+    scheduled_time DATETIME NOT NULL,
+    package_id INT,
+    estimated_time INT,
+    appointment_status VARCHAR(20) DEFAULT 'scheduled',
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
+    FOREIGN KEY (vehicle_id) REFERENCES vehicle(vehicle_id),
+    FOREIGN KEY (package_id) REFERENCES service_package(package_id)
 );
 
 CREATE TABLE service_detail (
@@ -85,7 +85,7 @@ CREATE TABLE service_detail (
 
 CREATE TABLE parts (
     PartID INT PRIMARY KEY AUTO_INCREMENT,
-    PartName VARCHAR(50) NOT NULL,
+    part_name VARCHAR(50) NOT NULL,
     Price DECIMAL(10, 2) NOT NULL,
-    StockQuantity INT NOT NULL
+    stock_quantity INT NOT NULL
 );

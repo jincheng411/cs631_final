@@ -15,11 +15,11 @@ const SaleOptions = () => {
       </div>
       <div>
         <h2>Service appointment</h2>
-        <button onClick={() => navigate('/new-customer')}>
-          Schedule a appointment
+        <button onClick={() => navigate('/service-appointments/new')}>
+          Schedule an appointment
         </button>
-        <button onClick={() => navigate('/new-customer')}>
-          view appointments
+        <button onClick={() => navigate('/service-appointments')}>
+          View all appointments
         </button>
       </div>
     </div>

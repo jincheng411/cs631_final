@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAppointments } from '../../services/appointmentService';
+import { getAppointments } from '../../api/appointmentService';
 import AppointmentFilter from './AppointmentFilter';
 
 const AppointmentList = () => {
@@ -26,14 +26,38 @@ const AppointmentList = () => {
     <div>
       <h2>Upcoming Car Service Appointments</h2>
       <AppointmentFilter onFilter={handleFilter} />
-      <ul>
-        {filteredAppointments.map((appointment) => (
-          <li key={appointment.id}>
-            <strong>{appointment.customerName}</strong> - {appointment.date} -{' '}
-            {appointment.vehicleVin}
-          </li>
-        ))}
-      </ul>
+      <table
+        border="1"
+        cellPadding="8"
+        style={{ width: '100%', marginTop: '16px' }}
+      >
+        <thead>
+          <tr>
+            <th>Appointment ID</th>
+            <th>Status</th>
+            <th>Scheduled Time</th>
+            <th>Estimated Time (mins)</th>
+            <th>VIN</th>
+            <th>Customer Name</th>
+            <th>Package Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredAppointments.map((appointment) => (
+            <tr key={appointment.appointmentId}>
+              <td>{appointment.appointmentId}</td>
+              <td>{appointment.appointmentStatus}</td>
+              <td>{appointment.scheduledTime}</td>
+              <td>{appointment.estimatedTime}</td>
+              <td>{appointment.vin}</td>
+              <td>
+                {appointment.firstName} {appointment.lastName}
+              </td>
+              <td>{appointment.packageName}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
