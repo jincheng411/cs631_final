@@ -39,6 +39,9 @@ public class SalesController {
         sale.setSoldPrice(salesDTO.getSoldPrice());
         sale.setSaleDate(salesDTO.getSaleDate());
 
+        //set vehicle as sold
+        vehicle.setSoldStatus(true);
+        vehicleService.saveVehicle(vehicle);
         return ResponseEntity.ok(salesService.recordSale(sale));
     }
 

@@ -23,5 +23,16 @@ public class CustomerController {
     public ResponseEntity<List<Customer>> getAllCustomers() {
         return ResponseEntity.ok(customerService.getAllCustomers());
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Customer>> findCustomerByName(
+            @RequestParam String firstName,
+            @RequestParam String lastName) {
+        List<Customer> customers = customerService.findCustomerByName(firstName, lastName);
+        if (customers.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(customers);
+    }
 }
 
