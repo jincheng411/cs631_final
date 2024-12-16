@@ -1,6 +1,7 @@
 package com.njit.cs631.final_project.service;
 
 
+import com.njit.cs631.final_project.dto.AppointmentDetailDTO;
 import com.njit.cs631.final_project.dto.ServiceDetailDTO;
 import com.njit.cs631.final_project.entity.Appointment;
 import com.njit.cs631.final_project.entity.ServiceDetail;
@@ -12,11 +13,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class ServiceDetailService {
 
-    @Autowired
-    private ServiceDetailRepository serviceDetailRepository;
+    private final AppointmentRepository appointmentRepository;
+    private final ServiceDetailRepository serviceDetailRepository;
 
     @Autowired
-    private AppointmentRepository appointmentRepository;
+    public ServiceDetailService(AppointmentRepository appointmentRepository, ServiceDetailRepository serviceDetailRepository) {
+        this.appointmentRepository = appointmentRepository;
+        this.serviceDetailRepository = serviceDetailRepository;
+    }
 
     public ServiceDetail addServiceDetail(ServiceDetailDTO serviceDetailDTO) {
         Appointment appointment = appointmentRepository.findById(serviceDetailDTO.getAppointmentId())
@@ -32,5 +36,6 @@ public class ServiceDetailService {
 
         return serviceDetailRepository.save(serviceDetail);
     }
+
 }
 

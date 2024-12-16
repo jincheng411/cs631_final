@@ -16,3 +16,11 @@ export const getServicePackages = async () => {
   const response = await axios.get(`${API_BASE}/service-packages`);
   return response.data;
 };
+
+export const getAppointmentById = async (id) => {
+  const response = await fetch(`${API_BASE}/appointments/${id}`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch appointment details');
+  }
+  return await response.json();
+};
