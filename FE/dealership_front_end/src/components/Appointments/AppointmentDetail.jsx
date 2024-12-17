@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getAppointmentById } from '../../api/appointmentService';
+import {
+  getAppointmentById,
+  updateAppointment,
+} from '../../api/appointmentService';
 
 const AppointmentDetail = () => {
   const { id } = useParams(); // Get appointment ID from route
@@ -25,6 +28,7 @@ const AppointmentDetail = () => {
 
   const handleSave = async () => {
     try {
+      console.log(editedAppointment);
       await updateAppointment(id, editedAppointment); // Save updated details
       setAppointment(editedAppointment); // Update UI
       setIsEditing(false);

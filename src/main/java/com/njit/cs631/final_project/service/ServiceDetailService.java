@@ -1,7 +1,6 @@
 package com.njit.cs631.final_project.service;
 
 
-import com.njit.cs631.final_project.dto.AppointmentDetailDTO;
 import com.njit.cs631.final_project.dto.ServiceDetailDTO;
 import com.njit.cs631.final_project.entity.Appointment;
 import com.njit.cs631.final_project.entity.ServiceDetail;
@@ -35,6 +34,23 @@ public class ServiceDetailService {
         serviceDetail.setTotalCost(serviceDetailDTO.getTotalCost());
 
         return serviceDetailRepository.save(serviceDetail);
+    }
+    public void updateServiceDetail(ServiceDetailDTO serviceDetailDTO) {
+        Appointment appointment = appointmentRepository.findById(serviceDetailDTO.getAppointmentId())
+                .orElseThrow(() -> new RuntimeException("Appointment not found"));
+
+        ServiceDetail serviceDetail = serviceDetailRepository.findByAppointment(appointment)
+                .orElse(new ServiceDetail());
+
+        serviceDetail.setAppointment(appointment);
+        serviceDetail.setArrivalTime(serviceDetailDTO.getArrivalTime());
+        serviceDetail.setPickUpTime(serviceDetailDTO.getPickUpTime());
+        serviceDetail.setServicePerformed(serviceDetailDTO.getServicePerformed());
+//        serviceDetail.setPartsUsed(serviceDetailDTO.getPartsUsed());
+        serviceDetail.setLaborHours(serviceDetailDTO.getLaborHours());
+        serviceDetail.setTotalCost(serviceDetailDTO.getTotalCost());
+
+        serviceDetailRepository.save(serviceDetail);
     }
 
 }

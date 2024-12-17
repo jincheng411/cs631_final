@@ -17,6 +17,19 @@ export const getServicePackages = async () => {
   return response.data;
 };
 
+export async function updateAppointment(id, updatedData) {
+  const response = await fetch(`${API_BASE}/service-details/update`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(updatedData),
+  });
+  if (!response.ok) {
+    throw new Error('Failed to update appointment');
+  }
+}
+
 export const getAppointmentById = async (id) => {
   const response = await fetch(`${API_BASE}/appointments/${id}`);
   if (!response.ok) {

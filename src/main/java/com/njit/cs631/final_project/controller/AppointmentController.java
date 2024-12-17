@@ -3,6 +3,7 @@ package com.njit.cs631.final_project.controller;
 import com.njit.cs631.final_project.dto.AppointmentDTO;
 import com.njit.cs631.final_project.dto.AppointmentDetailDTO;
 import com.njit.cs631.final_project.dto.AppointmentRequestDTO;
+import com.njit.cs631.final_project.dto.ServiceDetailDTO;
 import com.njit.cs631.final_project.entity.Appointment;
 import com.njit.cs631.final_project.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,4 +57,6 @@ public class AppointmentController {
         AppointmentDetailDTO appointmentDetail = appointmentService.getAppointmentDetailById(id);
         return ResponseEntity.ok(appointmentDetail);
     }
+
+
 }

@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/service-details")
+@RequestMapping("api/service-details")
 public class ServiceDetailController {
 
     @Autowired
@@ -23,6 +23,16 @@ public class ServiceDetailController {
         try {
             serviceDetailService.addServiceDetail(serviceDetailDTO);
             return new ResponseEntity<>("Service details added successfully", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<String> updateServiceDetail(@RequestBody ServiceDetailDTO serviceDetailDTO) {
+        try {
+            serviceDetailService.updateServiceDetail(serviceDetailDTO);
+            return new ResponseEntity<>("Service detail updated successfully", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
